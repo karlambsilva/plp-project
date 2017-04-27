@@ -6,12 +6,16 @@ Projeto da disciplina de Paradigmas de Linguagens de Programação ([IN1007]) mi
 - Karla Silva (kmbs@cin.ufpe.br)
 
 ## Proposta
-Persistência de registro em arquivos para as linguagens de Orientação a Objetos 1.
+Persistência de objetos serializados para as linguagens de Orientação a Objetos 1.
 
 ## BNF
-TBD
+A BNF completa da linguagem de orientação a objetos 1 pode ser encontrada no [site da linguagem]. Para fins de uso no projeto, adicionamos a BNF existente a expressão abaixo:
+
+IO ::= "write_file" "(" Expressao ")" | "read_file" "(" Id ")"
+
 
 ## Referências
 TBD
 
 [IN1007]: <https://www.cin.ufpe.br/~in1007>
+[site da linguagem]: <https://www.cin.ufpe.br/~in1007/linguagens/OrientadaObjetos1/orientadaObjetos1.html>
