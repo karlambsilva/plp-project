@@ -1,5 +1,7 @@
 package loo1.plp.orientadaObjetos1.memoria;
 
+import java.io.Serializable;
+
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.expressao.leftExpression.Id;
 import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
@@ -8,7 +10,7 @@ import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
  * Conjunto formado pelo nome da classe de um objeto e o seu estado
  * representado pelo ambiente de execu��o.
  */
-public class Objeto {
+public class Objeto implements Serializable{
     /**
      * Identificador da classe a que pertence o objeto.
      */

@@ -1,5 +1,7 @@
 package loo1.plp.orientadaObjetos1.expressao.valor;
 
+import java.io.Serializable;
+
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
@@ -8,7 +10,7 @@ import loo1.plp.orientadaObjetos1.util.TipoPrimitivo;
 /**
  * Classe que representa a refer�ncia a um objeto.
  */
-public class ValorRef implements Valor{
+public class ValorRef implements Valor, Serializable{
     /**
      * Primeira referencia valida na memoria
      */

@@ -13,6 +13,7 @@ import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoNaoDeclaradoException;
 import loo1.plp.orientadaObjetos1.expressao.Expressao;
 import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
+import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
 
@@ -51,8 +52,14 @@ public class WriteFile implements IO {
         
         String dir = this.dir.avaliar(ambiente).toString();
         
-		System.out.println("PRINT: " + expressao.getClass());
-		System.out.println("PRINT: " + valor.getClass());
+//		System.out.println("PRINT 1: " + expressao.avaliar(ambiente).getClass());
+//		System.out.println("PRINT 2: " + expressao.avaliar(ambiente));
+//		System.out.println("PRINT 3: " + expressao);
+		
+		Object my = ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente));
+		
+		System.out.println("PRINT 4: " + ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente)));
+//		System.out.println("PRINT: " + expressao.);
 
         try{
         	
@@ -62,29 +69,16 @@ public class WriteFile implements IO {
         	//Classe responsavel por inserir os objetos
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
 			
-			objGravar.writeObject(valor);
+//			objGravar.writeObject(valor);
+			objGravar.writeObject(my);
 			objGravar.flush();
 			objGravar.close();
 			arquivoGrav.flush();
 			arquivoGrav.close();
 			
-			//Carrega o arquivo
-			FileInputStream arquivoLeitura = new FileInputStream(dir);
-
-			//Classe responsavel por recuperar os objetos do arquivo
-			ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura);
-			
-			System.out.println(objLeitura.readObject());
-        	
         }catch (IOException exc){
         	exc.printStackTrace( );
-        } catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-       
-        
-       
+        }
         
 //        System.out.println(dir);
 //		System.out.println(valor.toString());

@@ -1,11 +1,12 @@
 package loo1.plp.orientadaObjetos1.memoria;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import loo1.plp.expressions2.expression.Id;
 import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
 
-public class ContextoObjeto{
+public class ContextoObjeto implements Serializable{
 
 	private HashMap<Id, Valor> estado;
 	

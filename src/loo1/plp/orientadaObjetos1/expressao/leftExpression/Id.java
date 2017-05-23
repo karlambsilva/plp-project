@@ -1,5 +1,7 @@
 package loo1.plp.orientadaObjetos1.expressao.leftExpression;
 
+import java.io.Serializable;
+
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
@@ -11,7 +13,7 @@ import loo1.plp.orientadaObjetos1.util.Tipo;
 /**
  * Classe que representa um identificador.
  */
-public class Id extends loo1.plp.expressions2.expression.Id implements LeftExpression{ //,IDominio{
+public class Id extends loo1.plp.expressions2.expression.Id implements LeftExpression, Serializable{ //,IDominio{
     
 	/**
      * Construtor.

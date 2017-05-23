@@ -1,5 +1,7 @@
 package loo1.plp.orientadaObjetos1.expressao.valor;
 
+import java.io.Serializable;
+
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
@@ -9,7 +11,7 @@ import loo1.plp.orientadaObjetos1.util.TipoPrimitivo;
 /**
  * Este valor primitivo encapsula um String.
  */
-public class ValorString implements ValorConcreto{
+public class ValorString implements ValorConcreto, Serializable{
 
     private String valor;
 

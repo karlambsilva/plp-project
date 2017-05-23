@@ -1,12 +1,14 @@
 package loo1.plp.expressions2.expression;
 
+import java.io.Serializable;
+
 import loo1.plp.expressions1.util.Tipo;
 import loo1.plp.expressions2.memory.AmbienteCompilacao;
 import loo1.plp.expressions2.memory.AmbienteExecucao;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.functional2.expression.ValorIrredutivel;
 
-public class Id implements Expressao {
+public class Id implements Expressao, Serializable{
 
 	private String idName;
 
