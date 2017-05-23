@@ -13,3 +13,7 @@ local.properties
 .classpath
 .settings/
 .loadpath
+
+src/loo1/orientadaObjetos1/parser/OO1Parser.java
+src/loo1/orientadaObjetos1/parser/OO1ParserConstants.java
+src/loo1/orientadaObjetos1/parser/OO1ParserTokenManager.java

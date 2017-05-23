@@ -1,0 +1,20 @@
+{
+      classe Estudante {
+          string profile = "Aluno 1 CC",
+          int age = 18;
+          
+          proc print() {
+            write(this.profile);
+            write(this.age)
+          }
+      }     
+      ;
+
+      {
+        Estudante e := new Estudante
+        ;
+    write("Teste do write");
+        e.print()
+     }
+
+   }

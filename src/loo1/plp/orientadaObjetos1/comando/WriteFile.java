@@ -1,6 +1,10 @@
 package loo1.plp.orientadaObjetos1.comando;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
@@ -20,12 +24,14 @@ public class WriteFile implements IO {
 	 * Express�o a ser escrita.
 	 */
     private Expressao expressao;
+    private Expressao dir;
 	/**
 	 * Construtor.
 	 * @param express�o Express�o a ser escrita.
 	 */
-    public WriteFile(Expressao expressao){
+    public WriteFile(Expressao expressao,Expressao dir){
         this.expressao = expressao;
+        this.dir = dir;
     }
 
     /**
@@ -34,23 +40,55 @@ public class WriteFile implements IO {
      * @return o ambiente depois de modificado pela execu��o
      * do comando <code>write</code>.
      * @throws ClasseNaoDeclaradaException 
+     * @throws  
+     * @throws FileNotFoundException 
      */
     public AmbienteExecucaoOO1 executar(AmbienteExecucaoOO1 ambiente)
         throws VariavelJaDeclaradaException, VariavelNaoDeclaradaException,
         ObjetoNaoDeclaradoException, ClasseNaoDeclaradaException {
+    	
         Valor valor = expressao.avaliar(ambiente);
         
+        String dir = this.dir.avaliar(ambiente).toString();
         
-//        FileOutputStream arquivoGrav = new FileOutputStream("output.txt");
-//
-//		//Classe responsavel por inserir os objetos
-//		ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
-//
-//		//Grava o objeto cliente no arquivo
-//		objGravar.writeObject(valor);
+		System.out.println("PRINT: " + expressao.getClass());
+		System.out.println("PRINT: " + valor.getClass());
+
+        try{
+        	
+			//Gera o arquivo para armazenar o objeto
+        	FileOutputStream arquivoGrav = new FileOutputStream(dir);
+        	
+        	//Classe responsavel por inserir os objetos
+			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
+			
+			objGravar.writeObject(valor);
+			objGravar.flush();
+			objGravar.close();
+			arquivoGrav.flush();
+			arquivoGrav.close();
+			
+			//Carrega o arquivo
+			FileInputStream arquivoLeitura = new FileInputStream(dir);
+
+			//Classe responsavel por recuperar os objetos do arquivo
+			ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura);
+			
+			System.out.println(objLeitura.readObject());
+        	
+        }catch (IOException exc){
+        	exc.printStackTrace( );
+        } catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+       
         
-		System.out.println(valor);
-        return ambiente.write( valor);
+       
+        
+//        System.out.println(dir);
+//		System.out.println(valor.toString());
+        return ambiente.write(valor);
     }
 
     /**

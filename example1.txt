@@ -1,0 +1,20 @@
+{
+      classe Cliente {
+          string name = "Jose Silva",
+          string cpf = "000.000.000-01";
+          
+          proc print() {
+            write(this.name);
+            write(this.cpf)
+          }
+      };
+
+      {
+        Cliente c := new Cliente
+        ;
+    write("Teste do write");
+        c.print();
+        write_file(c,"bla.txt")
+     }
+
+   }
