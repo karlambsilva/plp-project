@@ -14,6 +14,7 @@ import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.declaracao.classe.DecClasseSimples;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
+import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoJaDeclaradoException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoNaoDeclaradoException;
 import loo1.plp.orientadaObjetos1.excecao.execucao.EntradaInvalidaException;
 import loo1.plp.orientadaObjetos1.expressao.Expressao;
@@ -74,6 +75,18 @@ public class ReadFile implements IO{
 			
 			Objeto object = (Objeto) objLeitura.readObject();
 			
+			HashMap<ValorRef, Objeto> hash = ambiente.getMapObjetos();
+			ValorRef mykey = (ValorRef)id.avaliar(ambiente);
+			
+			for (ValorRef key : hash.keySet()) {
+				if (key.equals(mykey)){
+					hash.remove(key);
+					System.out.println("entrei no if");
+				}
+			}
+//			hash.
+			ambiente.mapObjeto((ValorRef)id.avaliar(ambiente), object);
+			
 //			ambiente.
 //			System.out.println(this.tipoId);
 //			this.id.;
@@ -120,7 +133,10 @@ public class ReadFile implements IO{
     	}catch(NullPointerException | ObjetoNaoDeclaradoException | ClasseNaoDeclaradaException | 
     			IOException | ClassNotFoundException exc){
         	exc.printStackTrace( );
-    	}
+    	} catch (ObjetoJaDeclaradoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 //        ambiente.changeValor(id, ambiente.read(this.tipoId));
         return ambiente;
