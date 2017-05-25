@@ -63,11 +63,11 @@ IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Exp
 ```
 
 ## Referências
-1. [site da linguagem]
+1. [Site da linguagem]
 2. Site da Disciplina ([IN1007])
 3. [Apresentacao do Projeto]
 
 [IN1007]: <https://www.cin.ufpe.br/~in1007>
-[site da linguagem]: <https://www.cin.ufpe.br/~in1007/linguagens/OrientadaObjetos1/orientadaObjetos1.html>
+[Site da linguagem]: <https://www.cin.ufpe.br/~in1007/linguagens/OrientadaObjetos1/orientadaObjetos1.html>
 
 [Apresentacao do Projeto]: <https://github.com/karlambsilva/plp-project/blob/master/doc/IN1007%20-%20Apresentacao%202.pdf>
