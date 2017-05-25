@@ -41,7 +41,6 @@ IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Exp
             this.sexo := receivedSexo           
           }
       }
-      
       ;
 
       {
@@ -55,14 +54,11 @@ IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Exp
         c1.setSexo("M");
         c1.setCpf("111.111.111-01");
         
-        write_file(c1,"bla.txt");
-        
-        read_file(c2,"bla.txt",0);
+        write_file(c1,"output.txt");
+        read_file(c2,"output.txt",0);
         
         c2.print()
-        
      }
-
    }
 ```
 
