@@ -7,7 +7,7 @@ import loo1.plp.orientadaObjetos1.util.Tipo;
 /**
  * <code>Valor</code> agrupa objetos dos diferentes valores primitivos
  */
-public interface Valor extends Expressao {
+public interface Valor extends Expressao{
 
 
     /**

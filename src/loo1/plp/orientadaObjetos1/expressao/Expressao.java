@@ -1,5 +1,7 @@
 package loo1.plp.orientadaObjetos1.expressao;
 
+import java.io.Serializable;
+
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
@@ -12,7 +14,7 @@ import loo1.plp.orientadaObjetos1.util.Tipo;
 /**
  * Uma express�o � a unidade basica na Linguagem de Expressoes.
  */
-public interface Expressao {
+public interface Expressao extends Serializable{
 
     /**
      * Avalia a expressao retornando seu Valor.

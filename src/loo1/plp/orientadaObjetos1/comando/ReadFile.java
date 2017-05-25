@@ -1,12 +1,29 @@
 package loo1.plp.orientadaObjetos1.comando;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectInputStream.GetField;
+import java.util.HashMap;
+
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
+import loo1.plp.orientadaObjetos1.declaracao.classe.DecClasseSimples;
+import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
+import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoNaoDeclaradoException;
 import loo1.plp.orientadaObjetos1.excecao.execucao.EntradaInvalidaException;
 import loo1.plp.orientadaObjetos1.expressao.Expressao;
 import loo1.plp.orientadaObjetos1.expressao.leftExpression.Id;
+import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
+import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
+import loo1.plp.orientadaObjetos1.memoria.DefClasse;
+import loo1.plp.orientadaObjetos1.memoria.Objeto;
 import loo1.plp.orientadaObjetos1.util.Tipo;
 
 /**
@@ -42,9 +59,70 @@ public class ReadFile implements IO{
      */
     public AmbienteExecucaoOO1 executar(AmbienteExecucaoOO1 ambiente)
         throws VariavelJaDeclaradaException, VariavelNaoDeclaradaException, EntradaInvalidaException {
-        ambiente.changeValor(id, ambiente.read(this.tipoId));
+        
+    	try{
 
-        ambiente.changeValor(id, ambiente.read(this.tipoId));
+        	String path = this.dir.avaliar(ambiente).toString();
+        	
+			//Carrega o arquivo
+			FileInputStream arquivoLeitura = new FileInputStream(path);
+
+			//Classe responsavel por recuperar os objetos do arquivo
+			ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura);
+			
+			System.out.println("----");
+			
+			Objeto object = (Objeto) objLeitura.readObject();
+			
+//			ambiente.
+//			System.out.println(this.tipoId);
+//			this.id.;
+			
+//			HashMap<loo1.plp.expressions2.expression.Id, DefClasse> hash = ambiente.getMapDefClasse();
+			
+//			for (DefClasse name: hash.values()){
+//
+//	            System.out.println(name.getClass());
+//	            System.out.println(name.getIdClasse());
+//	            String value = example.get(name).toString();  
+//	            System.out.println(key + "dentro do for" );  
+
+
+//		} 
+//			System.out.println(ambiente.getMapDefClasse().get("Cliente"));
+//			System.out.println("----");
+			
+			
+//			Objeto obj = (Objeto) objLeitura.readObject();
+//			obj.mapThis(ambiente.getContextoIdValor().getRef());
+//			System.out.println("resolvei " + ambiente.getContextoIdValor());
+//
+//			System.out.println(obj.getEstado().get(this.id));
+//			Object object = objLeitura.readObject();
+			
+//			System.out.println(object.toString());
+			
+//			System.out.println(object.getObjectStreamClass());
+			
+//			System.out.println(object.toString());
+			
+//			ambiente.
+			
+//			ambiente.
+			
+//			Valor temp = (Valor) object;
+			
+//			ambiente.changeValor(id, temp);
+						
+//	        ambiente.changeValor(id, ambiente.read(this.tipoId));
+
+			
+    	}catch(NullPointerException | ObjetoNaoDeclaradoException | ClasseNaoDeclaradaException | 
+    			IOException | ClassNotFoundException exc){
+        	exc.printStackTrace( );
+    	}
+
+//        ambiente.changeValor(id, ambiente.read(this.tipoId));
         return ambiente;
     }
 

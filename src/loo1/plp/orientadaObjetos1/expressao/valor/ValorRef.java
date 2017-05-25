@@ -10,7 +10,7 @@ import loo1.plp.orientadaObjetos1.util.TipoPrimitivo;
 /**
  * Classe que representa a refer�ncia a um objeto.
  */
-public class ValorRef implements Valor, Serializable{
+public class ValorRef implements Valor{
     /**
      * Primeira referencia valida na memoria
      */

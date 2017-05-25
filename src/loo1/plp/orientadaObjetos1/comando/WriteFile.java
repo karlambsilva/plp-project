@@ -16,6 +16,7 @@ import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
 import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
+import loo1.plp.orientadaObjetos1.memoria.Objeto;
 
 /**
  * Comando de escrita.
@@ -50,27 +51,19 @@ public class WriteFile implements IO {
     	
         Valor valor = expressao.avaliar(ambiente);
         
-        String dir = this.dir.avaliar(ambiente).toString();
-        
-//		System.out.println("PRINT 1: " + expressao.avaliar(ambiente).getClass());
-//		System.out.println("PRINT 2: " + expressao.avaliar(ambiente));
-//		System.out.println("PRINT 3: " + expressao);
+        String path = this.dir.avaliar(ambiente).toString();
 		
-		Object my = ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente));
-		
-		System.out.println("PRINT 4: " + ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente)));
-//		System.out.println("PRINT: " + expressao.);
+		Objeto object = ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente));
 
         try{
         	
 			//Gera o arquivo para armazenar o objeto
-        	FileOutputStream arquivoGrav = new FileOutputStream(dir);
+        	FileOutputStream arquivoGrav = new FileOutputStream(path);
         	
         	//Classe responsavel por inserir os objetos
 			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
 			
-//			objGravar.writeObject(valor);
-			objGravar.writeObject(my);
+			objGravar.writeObject(object);
 			objGravar.flush();
 			objGravar.close();
 			arquivoGrav.flush();
@@ -80,8 +73,6 @@ public class WriteFile implements IO {
         	exc.printStackTrace( );
         }
         
-//        System.out.println(dir);
-//		System.out.println(valor.toString());
         return ambiente.write(valor);
     }
 

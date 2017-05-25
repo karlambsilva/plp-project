@@ -1,0 +1,15 @@
+classe Contador1 {
+          int valor = 1,
+          Contador c := new Contador    
+          ;
+          proc print() {
+            write(this.valor)
+          },
+
+          proc incrementa(int a,Contador c) {
+            c.incrementa();     
+            this.valor := this.valor + a;
+            write("O novo valor de Contador1 e: "++this.valor)
+          }
+      }       
+      ;

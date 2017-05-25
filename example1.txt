@@ -1,20 +1,39 @@
 {
       classe Cliente {
           string name = "Jose Silva",
-          string cpf = "000.000.000-01";
+          string cpf = "000.000.000-01"
+          ;
           
           proc print() {
             write(this.name);
             write(this.cpf)
+          },
+          
+          proc setName(string receivedName) {
+            this.name := receivedName            
+          },
+          
+          proc setCpf(string receivedCpf) {
+            this.cpf := receivedCpf            
           }
-      };
+      }
+      
+      ;
 
       {
-        Cliente c := new Cliente
+        Cliente c := new Cliente,
+        Cliente c2 := new Cliente 
         ;
-    write("Teste do write");
+        
+        write("Teste do write");
+        
+        c.setName("New name");
         c.print();
-        write_file(c,"bla.txt")
+        
+        write_file(c,"bla.txt");
+        read_file(c2,"bla.txt");
+        
+        c2.print()
      }
 
    }
