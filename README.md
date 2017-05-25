@@ -63,7 +63,8 @@ IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Exp
 ```
 
 ## Referências
-TBD
+Site da Linguagem:
+Site da Disciplina:
 
 [IN1007]: <https://www.cin.ufpe.br/~in1007>
 [site da linguagem]: <https://www.cin.ufpe.br/~in1007/linguagens/OrientadaObjetos1/orientadaObjetos1.html>
