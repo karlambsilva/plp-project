@@ -11,8 +11,60 @@ Persistência de objetos serializados para as linguagens de Orientação a Objet
 ## BNF
 A BNF completa da linguagem de orientação a objetos 1 pode ser encontrada no [site da linguagem]. Para fins de uso no projeto, adicionamos a BNF existente a expressão abaixo:
 
-IO ::= "write_file" "(" Expressao ")" | "read_file" "(" Id ")"
+IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Expressao "," Expressao ")"
 
+## Exemplo
+
+```
+{
+      classe Cliente {
+          string name = "",
+          string cpf = "",
+          string sexo = ""
+          ;
+          
+          proc print() {
+            write(this.name);
+            write(this.sexo);
+            write(this.cpf)
+          },
+          
+          proc setName(string receivedName) {
+            this.name := receivedName            
+          },
+          
+          proc setCpf(string receivedCpf) {
+            this.cpf := receivedCpf            
+          },
+          
+          proc setSexo(string receivedSexo) {
+            this.sexo := receivedSexo           
+          }
+      }
+      
+      ;
+
+      {
+        Cliente c1 := new Cliente,
+        Cliente c2 := new Cliente
+        ;
+        
+        write("Teste do write_file + read_file");
+        
+        c1.setName("Jose Silva");
+        c1.setSexo("M");
+        c1.setCpf("111.111.111-01");
+        
+        write_file(c1,"bla.txt");
+        
+        read_file(c2,"bla.txt",0);
+        
+        c2.print()
+        
+     }
+
+   }
+```
 
 ## Referências
 TBD
