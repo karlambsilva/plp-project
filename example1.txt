@@ -1,11 +1,13 @@
 {
       classe Cliente {
           string name = "",
-          string cpf = ""
+          string cpf = "",
+          string sexo = ""
           ;
           
           proc print() {
             write(this.name);
+            write(this.sexo);
             write(this.cpf)
           },
           
@@ -15,6 +17,10 @@
           
           proc setCpf(string receivedCpf) {
             this.cpf := receivedCpf            
+          },
+          
+          proc setSexo(string receivedSexo) {
+            this.sexo := receivedSexo           
           }
       }
       
@@ -27,17 +33,22 @@
         Cliente c4 := new Cliente
         ;
         
-        write("Teste do write");
+        write("Teste do write_file + read_file");
         
         c1.setName("Jose Silva");
+        c1.setSexo("M");
         c1.setCpf("111.111.111-01");
+        
         c2.setName("Maria Santos");
+        c2.setSexo("F");
         c2.setCpf("222.222.222-02");
         
         write_file(c1,"bla.txt");
         write_file(c2,"bla.txt");
+        
         read_file(c3,"bla.txt",0);
         read_file(c4,"bla.txt",1);
+        
         c3.print();
         c4.print()
         
