@@ -1,7 +1,7 @@
 {
       classe Cliente {
-          string name = "Jose Silva",
-          string cpf = "000.000.000-01"
+          string name = "",
+          string cpf = ""
           ;
           
           proc print() {
@@ -21,19 +21,27 @@
       ;
 
       {
-        Cliente c := new Cliente,
-        Cliente c2 := new Cliente 
+        Cliente c1 := new Cliente,
+        Cliente c2 := new Cliente, 
+        Cliente c3 := new Cliente, 
+        Cliente c4 := new Cliente 
         ;
         
         write("Teste do write");
         
-        c.setName("New name");
-        c.print();
+        c1.setName("New name 1");
+        c1.setCpf("000.000.000-01");
+        c2.setName("New name 2");
+        c2.setCpf("000.000.000-02");
         
-        write_file(c,"bla.txt");
-        read_file(c2,"bla.txt");
+        write_file(c1,"bla.txt");
+        write_file(c2,"bla.txt");
+        read_file(c3,"bla.txt");
+        read_file(c4,"bla.txt");
         
-        c2.print()
+        c3.print();
+        c4.print()
+        
      }
 
    }

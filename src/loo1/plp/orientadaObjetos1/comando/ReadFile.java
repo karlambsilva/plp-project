@@ -1,6 +1,7 @@
 package loo1.plp.orientadaObjetos1.comando;
 
 import java.io.BufferedReader;
+import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,7 +9,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
 import java.io.ObjectInputStream.GetField;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
@@ -70,73 +73,29 @@ public class ReadFile implements IO{
 
 			//Classe responsavel por recuperar os objetos do arquivo
 			ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura);
+						
+			int count = 0;
 			
-			System.out.println("----");
+			List <Objeto> objetos = new ArrayList<>();
 			
-			Objeto object = (Objeto) objLeitura.readObject();
-			
-			HashMap<ValorRef, Objeto> hash = ambiente.getMapObjetos();
-			ValorRef mykey = (ValorRef)id.avaliar(ambiente);
-			
-			for (ValorRef key : hash.keySet()) {
-				if (key.equals(mykey)){
-					hash.remove(key);
-					System.out.println("entrei no if");
+			while (count != -1){
+				try{
+					objetos.add((Objeto) objLeitura.readObject());
+					count++;
+				}catch (EOFException eofExc){
+					count = -1;
 				}
 			}
-//			hash.
-			ambiente.mapObjeto((ValorRef)id.avaliar(ambiente), object);
 			
-//			ambiente.
-//			System.out.println(this.tipoId);
-//			this.id.;
+			ValorRef proxRef = ambiente.getProxRef();
 			
-//			HashMap<loo1.plp.expressions2.expression.Id, DefClasse> hash = ambiente.getMapDefClasse();
-			
-//			for (DefClasse name: hash.values()){
-//
-//	            System.out.println(name.getClass());
-//	            System.out.println(name.getIdClasse());
-//	            String value = example.get(name).toString();  
-//	            System.out.println(key + "dentro do for" );  
-
-
-//		} 
-//			System.out.println(ambiente.getMapDefClasse().get("Cliente"));
-//			System.out.println("----");
-			
-			
-//			Objeto obj = (Objeto) objLeitura.readObject();
-//			obj.mapThis(ambiente.getContextoIdValor().getRef());
-//			System.out.println("resolvei " + ambiente.getContextoIdValor());
-//
-//			System.out.println(obj.getEstado().get(this.id));
-//			Object object = objLeitura.readObject();
-			
-//			System.out.println(object.toString());
-			
-//			System.out.println(object.getObjectStreamClass());
-			
-//			System.out.println(object.toString());
-			
-//			ambiente.
-			
-//			ambiente.
-			
-//			Valor temp = (Valor) object;
-			
-//			ambiente.changeValor(id, temp);
-						
-//	        ambiente.changeValor(id, ambiente.read(this.tipoId));
-
+			ambiente.mapObjeto(proxRef, objetos.get(1));
+			ambiente.changeValor(this.id, proxRef);
 			
     	}catch(NullPointerException | ObjetoNaoDeclaradoException | ClasseNaoDeclaradaException | 
-    			IOException | ClassNotFoundException exc){
+    			IOException | ClassNotFoundException | ObjetoJaDeclaradoException exc){
         	exc.printStackTrace( );
-    	} catch (ObjetoJaDeclaradoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	} 
 
 //        ambiente.changeValor(id, ambiente.read(this.tipoId));
         return ambiente;

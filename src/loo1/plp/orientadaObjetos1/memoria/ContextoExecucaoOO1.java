@@ -3,6 +3,7 @@ package loo1.plp.orientadaObjetos1.memoria;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.util.HashMap;
 import java.util.Stack;
 
@@ -26,6 +27,8 @@ import loo1.plp.orientadaObjetos1.util.TipoPrimitivo;
 
 public class ContextoExecucaoOO1 implements AmbienteExecucaoOO1 {
 
+	ObjectInputStream objLeitura;
+	
     /**
 	 * A pilha de blocos de contexto.
 	 */

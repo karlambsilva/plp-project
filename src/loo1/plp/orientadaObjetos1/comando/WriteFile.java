@@ -1,10 +1,8 @@
 package loo1.plp.orientadaObjetos1.comando;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
@@ -12,11 +10,11 @@ import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoNaoDeclaradoException;
 import loo1.plp.orientadaObjetos1.expressao.Expressao;
-import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
 import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.Objeto;
+import serializable.AppendingObjectOutputStream;
 
 /**
  * Comando de escrita.
@@ -48,32 +46,39 @@ public class WriteFile implements IO {
     public AmbienteExecucaoOO1 executar(AmbienteExecucaoOO1 ambiente)
         throws VariavelJaDeclaradaException, VariavelNaoDeclaradaException,
         ObjetoNaoDeclaradoException, ClasseNaoDeclaradaException {
-    	
-        Valor valor = expressao.avaliar(ambiente);
-        
+    	        
         String path = this.dir.avaliar(ambiente).toString();
-		
-		Objeto object = ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente));
 
-        try{
+		Objeto object = ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente));
+		
+		ObjectOutputStream objGravar;
+		
+        try{        	
         	
-			//Gera o arquivo para armazenar o objeto
-        	FileOutputStream arquivoGrav = new FileOutputStream(path);
-        	
-        	//Classe responsavel por inserir os objetos
-			ObjectOutputStream objGravar = new ObjectOutputStream(arquivoGrav);
+        	//Gera o arquivo para armazenar o objeto
+			FileOutputStream arquivoGrav = new FileOutputStream(path, true);
+			
+			File file = new File(path);
+			
+			if(file.exists() && file.isFile() && file.length() != 0.0){
+				objGravar = new AppendingObjectOutputStream(arquivoGrav);
+			}else{
+				objGravar = new ObjectOutputStream (arquivoGrav);
+			}
 			
 			objGravar.writeObject(object);
+			
 			objGravar.flush();
 			objGravar.close();
+			
 			arquivoGrav.flush();
 			arquivoGrav.close();
 			
         }catch (IOException exc){
-        	exc.printStackTrace( );
+        	exc.printStackTrace();
         }
         
-        return ambiente.write(valor);
+        return ambiente;
     }
 
     /**
