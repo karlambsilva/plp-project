@@ -1,32 +1,23 @@
 package loo1.plp.orientadaObjetos1.comando;
 
-import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
-import java.io.ObjectInputStream.GetField;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import loo1.plp.expressions2.memory.VariavelJaDeclaradaException;
 import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
-import loo1.plp.orientadaObjetos1.declaracao.classe.DecClasseSimples;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoJaDeclaradoException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoNaoDeclaradoException;
 import loo1.plp.orientadaObjetos1.excecao.execucao.EntradaInvalidaException;
 import loo1.plp.orientadaObjetos1.expressao.Expressao;
 import loo1.plp.orientadaObjetos1.expressao.leftExpression.Id;
-import loo1.plp.orientadaObjetos1.expressao.valor.Valor;
 import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
-import loo1.plp.orientadaObjetos1.memoria.DefClasse;
 import loo1.plp.orientadaObjetos1.memoria.Objeto;
 import loo1.plp.orientadaObjetos1.util.Tipo;
 
@@ -45,13 +36,16 @@ public class ReadFile implements IO{
     
     private Expressao dir;
 
+    private Expressao index;
+
 	/**
 	 * Construtor.
 	 * @param id O identificador ao qual ser� a atribu�do o valor lido.
 	 */
-    public ReadFile ( Id id, Expressao dir){
+    public ReadFile ( Id id, Expressao dir, Expressao index){
         this.id = id;
         this.dir = dir;
+        this.index = index;
     }
 
     /**
@@ -75,9 +69,9 @@ public class ReadFile implements IO{
 			ObjectInputStream objLeitura = new ObjectInputStream(arquivoLeitura);
 						
 			int count = 0;
-			
 			List <Objeto> objetos = new ArrayList<>();
 			
+			//pegue todos os objetos para obter o certo
 			while (count != -1){
 				try{
 					objetos.add((Objeto) objLeitura.readObject());
@@ -89,15 +83,19 @@ public class ReadFile implements IO{
 			
 			ValorRef proxRef = ambiente.getProxRef();
 			
-			ambiente.mapObjeto(proxRef, objetos.get(1));
+			int pos = Integer.parseInt(this.index.avaliar(ambiente).toString());
+
+			ambiente.mapObjeto(proxRef, objetos.get(pos));
 			ambiente.changeValor(this.id, proxRef);
+			
+			objLeitura.close();
+			arquivoLeitura.close();
 			
     	}catch(NullPointerException | ObjetoNaoDeclaradoException | ClasseNaoDeclaradaException | 
     			IOException | ClassNotFoundException | ObjetoJaDeclaradoException exc){
         	exc.printStackTrace( );
     	} 
 
-//        ambiente.changeValor(id, ambiente.read(this.tipoId));
         return ambiente;
     }
 

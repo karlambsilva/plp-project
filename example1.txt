@@ -24,21 +24,20 @@
         Cliente c1 := new Cliente,
         Cliente c2 := new Cliente, 
         Cliente c3 := new Cliente, 
-        Cliente c4 := new Cliente 
+        Cliente c4 := new Cliente
         ;
         
         write("Teste do write");
         
-        c1.setName("New name 1");
-        c1.setCpf("000.000.000-01");
-        c2.setName("New name 2");
-        c2.setCpf("000.000.000-02");
+        c1.setName("Jose Silva");
+        c1.setCpf("111.111.111-01");
+        c2.setName("Maria Santos");
+        c2.setCpf("222.222.222-02");
         
         write_file(c1,"bla.txt");
         write_file(c2,"bla.txt");
-        read_file(c3,"bla.txt");
-        read_file(c4,"bla.txt");
-        
+        read_file(c3,"bla.txt",0);
+        read_file(c4,"bla.txt",1);
         c3.print();
         c4.print()
         
