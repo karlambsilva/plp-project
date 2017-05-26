@@ -492,15 +492,15 @@ public class OO1Parser implements OO1ParserConstants {
 
 /** * ... "write_file" "(" Expressao, Expressao ")" **/
   final public WriteFile PWriteFile() throws ParseException {
-  Expressao exp;
+  Id id;
   Expressao dir;
     jj_consume_token(WRITE_FILE);
     jj_consume_token(LPAREN);
-    exp = PExpressao();
+    id = PId();
     jj_consume_token(COMMA);
     dir = PExpressao();
     jj_consume_token(RPAREN);
-    {if (true) return new WriteFile(exp, dir);}
+    {if (true) return new WriteFile(id, dir);}
     throw new Error("Missing return statement in function");
   }
 
@@ -2158,7 +2158,7 @@ public class OO1Parser implements OO1ParserConstants {
   private boolean jj_3R_96() {
     if (jj_scan_token(WRITE_FILE)) return true;
     if (jj_scan_token(LPAREN)) return true;
-    if (jj_3R_8()) return true;
+    if (jj_3R_6()) return true;
     if (jj_scan_token(COMMA)) return true;
     if (jj_3R_8()) return true;
     if (jj_scan_token(RPAREN)) return true;

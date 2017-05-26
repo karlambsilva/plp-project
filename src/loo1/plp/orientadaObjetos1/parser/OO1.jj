@@ -51,12 +51,12 @@ options{  JAVA_UNICODE_ESCAPE = true;  STATIC = false;}PARSER_BEGIN(OO1Par
  **/New PNew() :{  LeftExpression av;  Id idClasse;}{  av = PLeftExpression() < ATTRIB > < NEW > idClasse = PId()  {    return new New(av, idClasse);  }}/**
  * Atribuicao ::= LeftExpression ":=" Expressao
  **/Atribuicao PAtribuicao() :{  LeftExpression av;  Expressao exp;}{  av = PLeftExpression() < ATTRIB > exp = PExpressao()  {    return new Atribuicao(av, exp);  }}/**
- * IO ::= "write" "(" Expressao ")" | "read" "(" Id ")" | "write_file" "(" Expressao ")" | "read_file" "(" Id ")"
+ * IO ::= "write" "(" Expressao ")" | "read" "(" Id ")" | "write_file" "(" Id "," Expressao ")" | "read_file" "(" Id "," Expressao "," Expressao ")"
  **/IO PIO() :{  IO retorno;}{  (    LOOKAHEAD(< WRITE >)    retorno = PWrite()  | retorno = PRead()  | retorno = PWriteFile()  | retorno = PReadFile()  )  {    return retorno;  }}/**
  * ... "read" "(" Id ")"
  **/Read PRead() :{  Id id;}{  < READ > < LPAREN > id = PId() < RPAREN >  {    return new Read(id);  }}/** * ... "read_file" "(" Id, Expressao, Expressao ")" **/ReadFile PReadFile() :{  Id id;  Expressao dir;  Expressao index;}{  < READ_FILE > < LPAREN > id = PId() <COMMA> dir = PExpressao() <COMMA> index = PExpressao() < RPAREN >  {    return new ReadFile(id, dir, index);  }}/**
  * ... "write" "(" Expressao ")"
- **/Write PWrite() :{  Expressao exp;}{  < WRITE > < LPAREN > exp = PExpressao() < RPAREN >  {    return new Write(exp);  }}/** * ... "write_file" "(" Expressao, Expressao ")" **/WriteFile PWriteFile() :{  Expressao exp;  Expressao dir;}{  < WRITE_FILE > < LPAREN > exp = PExpressao() <COMMA> dir = PExpressao() < RPAREN >  {    return new WriteFile(exp, dir);  }}/**
+ **/Write PWrite() :{  Expressao exp;}{  < WRITE > < LPAREN > exp = PExpressao() < RPAREN >  {    return new Write(exp);  }}/** * ... "write_file" "(" Expressao, Expressao ")" **/WriteFile PWriteFile() :{  Id id;  Expressao dir;}{  < WRITE_FILE > < LPAREN > id = PId() <COMMA> dir = PExpressao() < RPAREN >  {    return new WriteFile(id, dir);  }}/**
  * Expressao ::= ExpUnaria | ExpBinaria | ExpPrimaria
  **/Expressao PExpressao() :{  Expressao retorno;}{  retorno = PExpBinaria()  {    return retorno;  }}/**
  * ExpPrimaria ::= Valor | LeftExpression | this | "("Expressao")"

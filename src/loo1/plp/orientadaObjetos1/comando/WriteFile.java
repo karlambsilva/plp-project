@@ -10,6 +10,7 @@ import loo1.plp.expressions2.memory.VariavelNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ClasseNaoDeclaradaException;
 import loo1.plp.orientadaObjetos1.excecao.declaracao.ObjetoNaoDeclaradoException;
 import loo1.plp.orientadaObjetos1.expressao.Expressao;
+import loo1.plp.orientadaObjetos1.expressao.leftExpression.Id;
 import loo1.plp.orientadaObjetos1.expressao.valor.ValorRef;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteCompilacaoOO1;
 import loo1.plp.orientadaObjetos1.memoria.AmbienteExecucaoOO1;
@@ -20,17 +21,22 @@ import serializable.AppendingObjectOutputStream;
  * Comando de escrita.
  */
 public class WriteFile implements IO {
+	
+	/**
+	 * O identificador ao qual sera lido.
+	 */
+    private Id id;
+    
 	/**
 	 * Express�o a ser escrita.
 	 */
-    private Expressao expressao;
     private Expressao dir;
 	/**
 	 * Construtor.
 	 * @param express�o Express�o a ser escrita.
 	 */
-    public WriteFile(Expressao expressao,Expressao dir){
-        this.expressao = expressao;
+    public WriteFile(Id id, Expressao dir){
+    	this.id = id;
         this.dir = dir;
     }
 
@@ -49,7 +55,7 @@ public class WriteFile implements IO {
     	        
         String path = this.dir.avaliar(ambiente).toString();
 
-		Objeto object = ambiente.getObjeto((ValorRef)expressao.avaliar(ambiente));
+		Objeto object = ambiente.getObjeto((ValorRef)id.avaliar(ambiente));
 		
 		ObjectOutputStream objGravar;
 		
@@ -91,6 +97,6 @@ public class WriteFile implements IO {
     public boolean checaTipo(AmbienteCompilacaoOO1 ambiente)
         throws VariavelJaDeclaradaException, VariavelNaoDeclaradaException,
         ClasseNaoDeclaradaException {
-        return expressao.checaTipo(ambiente);
+        return id.checaTipo(ambiente);
     }
 }
