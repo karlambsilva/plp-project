@@ -43,11 +43,11 @@
         c2.setSexo("F");
         c2.setCpf("222.222.222-02");
         
-        write_file(c1,"bla.txt");
-        write_file(c2,"bla.txt");
+        write_file(c1,"output.txt");
+        write_file(c2,"output.txt");
         
-        read_file(c3,"bla.txt",0);
-        read_file(c4,"bla.txt",1);
+        read_file(c3,"output.txt",0);
+        read_file(c4,"output.txt",1);
         
         c3.print();
         c4.print()
