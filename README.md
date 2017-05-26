@@ -11,7 +11,7 @@ Persistência de objetos serializados para as linguagens de Orientação a Objet
 ## BNF
 A BNF completa da linguagem de orientação a objetos 1 pode ser encontrada no [site da linguagem]. Para fins de uso no projeto, adicionamos a BNF existente a expressão abaixo:
 
-IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Expressao "," Expressao ")"
+IO ::= "write_file" "(" Id "," Expressao ")" | "read_file" "(" Id "," Expressao "," Expressao ")"
 
 ## Exemplo
 
@@ -63,8 +63,11 @@ IO ::= "write_file" "(" Expressao "," Expressao ")" | "read_file" "(" Id "," Exp
 ```
 
 ## Referências
-Site da Linguagem:
-Site da Disciplina:
+1. [Site da linguagem]
+2. Site da Disciplina ([IN1007])
+3. [Apresentacao do Projeto]
 
 [IN1007]: <https://www.cin.ufpe.br/~in1007>
-[site da linguagem]: <https://www.cin.ufpe.br/~in1007/linguagens/OrientadaObjetos1/orientadaObjetos1.html>
+[Site da linguagem]: <https://www.cin.ufpe.br/~in1007/linguagens/OrientadaObjetos1/orientadaObjetos1.html>
+
+[Apresentacao do Projeto]: <https://github.com/karlambsilva/plp-project/blob/master/doc/IN1007%20-%20Apresentacao%202.pdf>
