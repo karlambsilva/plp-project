@@ -26,8 +26,6 @@ import loo1.plp.orientadaObjetos1.util.Tipo;
 import loo1.plp.orientadaObjetos1.util.TipoPrimitivo;
 
 public class ContextoExecucaoOO1 implements AmbienteExecucaoOO1 {
-
-	ObjectInputStream objLeitura;
 	
     /**
 	 * A pilha de blocos de contexto.

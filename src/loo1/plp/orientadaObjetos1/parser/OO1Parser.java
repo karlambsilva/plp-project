@@ -420,7 +420,7 @@ public class OO1Parser implements OO1ParserConstants {
   }
 
 /**
- * IO ::= "write" "(" Expressao ")" | "read" "(" Id ")" | "write_file" "(" Expressao ")" | "read_file" "(" Id ")"
+ * IO ::= "write" "(" Expressao ")" | "read" "(" Id ")" | "write_file" "(" Id "," Expressao ")" | "read_file" "(" Id "," Expressao "," Expressao ")"
  **/
   final public IO PIO() throws ParseException {
   IO retorno;
@@ -460,7 +460,9 @@ public class OO1Parser implements OO1ParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-/** * ... "read_file" "(" Id, Expressao, Expressao ")" **/
+/**
+ * ... "read_file" "(" Id, Expressao, Expressao ")"
+ **/
   final public ReadFile PReadFile() throws ParseException {
   Id id;
   Expressao dir;
@@ -490,7 +492,9 @@ public class OO1Parser implements OO1ParserConstants {
     throw new Error("Missing return statement in function");
   }
 
-/** * ... "write_file" "(" Expressao, Expressao ")" **/
+/**
+ * ... "write_file" "(" Id, Expressao ")"
+ **/
   final public WriteFile PWriteFile() throws ParseException {
   Id id;
   Expressao dir;

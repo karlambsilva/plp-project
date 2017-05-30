@@ -1,0 +1,39 @@
+{
+
+  classe Cliente {
+	string name = "",
+	string account = "",
+	int balance = "";
+
+	proc print() {
+		write(this.name);
+		write(this.account);
+		write(this.balance)
+	},
+	
+	proc setName(string receivedName) {
+		this.name := receivedName
+	},
+	
+	proc setAccount(string receivedAccount) {
+		this.account := receivedAccount
+	},
+	
+	proc setbalance(string receivedBalance) {
+		this.balance := receivedBalance
+	}
+  }
+  ;
+  {
+    Cliente c1 := new Cliente,
+    Cliente c2 := new Cliente;
+    
+    write("Teste do read_file");
+    
+    read_file(c1, "output1.txt", 0);
+    read_file(c2, "output1.txt", 1);
+
+    c1.print();
+    c2.print()
+  }
+}
